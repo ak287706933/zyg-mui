@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<script src="js/lib/rem.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index-tab-main.css"/>
+		<title>主界面-tab</title>
+	</head>
+	<body>
+		<div class="tap_warpper">
+			<div id="segmentedControl" class="mui-segmented-control">
+				<a class="mui-control-item mui-active" href="#item1">医馆</a>
+				<a class="mui-control-item" href="#item2">医生</a>
+				<a class="mui-control-item" href="#item3">科室</a>
+			</div>
+		</div>
+		<div class="scroll_view">
+			<div class="tab_search_con">
+				<i class="mui-icon mui-icon-search"></i>
+				<input type="text"/>
+				<button>搜索</button>
+			</div>
+			<div id="item1" class="mui-control-content mui-active">
+				<div  class="mui-content mui-scroll-wrapper refresh-container">
+				  <div class="mui-scroll">
+					<ul class="tab_ul" id="ygUl">
+						<li class="tab_ul_yg clearfix">
+							<a href="index-tab-yg.html">
+								<img src="img/yiguan.png"/>
+								<div class="yg_text">
+									<p>国医馆</p>
+									<p class="addr_p"><i></i>地址</p>
+								</div>
+							</a>
+						</li>
+					</ul>
+				  </div>
+				</div>
+			</div>
+			<div id="item2" class="mui-control-content">
+				<div  class="mui-content mui-scroll-wrapper refresh-container">
+				  <div class="mui-scroll">
+					<ul class="tab_ul" id="ysUl">
+						<li class="tab_ul_ys clearfix">
+							<a href="index-tab-ys.html">
+								<img src="img/yisheng.png"/>
+								<div class="ys_text">
+									<p>李主任<span>男</span></p>
+									<p>骨科</p>
+								</div>
+								<div class="ys_price">
+									<p>专家号</p>
+									<p>¥ 200</p>
+								</div>
+							</a>
+						</li>
+					</ul>
+				  </div>
+				</div>
+			</div>
+			<div id="item3" class="mui-control-content">
+				<div  class="mui-content mui-scroll-wrapper refresh-container">
+				  <div class="mui-scroll">
+					<ul class="tab_ul" id="ksUl">
+						<li class="tab_ul_ks clearfix">
+							<a href="index-tab-ks.html">中医内科</a>
+						</li>
+					</ul>
+				  </div>
+				</div>
+			</div>
+		</div>
+		<script src="js/lib/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/mui.pullToRefresh.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/mui.pullToRefresh.material.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/mock.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var ygAllPage = 3;
+			var ysAllPage = 3;
+			var ksAllPage = 3;
+			var ygNowPage = 1;
+			var ysNowPage = 1;
+			var ksNowPage = 1;
+			Mock.mock('yiguan.json', {    
+			  'list|3-5': [{     
+			         'id|+1': 1,
+			         'address': '@city(true)',
+			         'name': '@cname',
+			         'sex':'男'
+			     }]
+			 });
+			Mock.mock('yishen.json', {    
+			  'list|3-5': [{     
+			         'id|+1': 1,
+			         'name': '@cname',
+			         'sex':'男',
+			         'price|100-200':100
+			     }]
+			 });
+ 			Mock.mock('keshi.json', {    
+			  'list|3-5': [{     
+			         'id|+1': 1,
+			         'depname': '骨科',
+			     }]
+			 });
+ 			function pullDown2(){
+		    	$.ajax({
+			        url : 'yishen.json',
+			        type : "get",
+			        dataType : "json",
+			        success : function(data) {
+						var fragment = document.createDocumentFragment();
+						var li;
+						for (var i = 0; i < data.list.length; i++) {
+							li = document.createElement('li');
+							li.className = "tab_ul_ys clearfix"
+							li.innerHTML =	'<a href="index-tab-ys.html">'+
+												'<img src="img/yisheng.png"/>'+
+												'<div class="ys_text">'+
+													'<p>'+data.list[i].name+'<span>男</span></p>'+
+													'<p>骨科</p>'+
+												'</div>'+
+												'<div class="ys_price">'+
+													'<p>专家号</p>'+
+													'<p>¥ '+data.list[i].price+'</p>'+
+												'</div>'+
+											'</a>'
+							fragment.appendChild(li);
+						}
+						var ul = document.querySelector('#ysUl');
+						ul.appendChild(fragment);
+			        }
+				});
+			}
+			function pullDown1(){
+		    	$.ajax({
+			        url : 'yiguan.json',
+			        type : "get",
+			        dataType : "json",
+			        success : function(data) {
+						var fragment = document.createDocumentFragment();
+						var li;
+						for (var i = 0; i < data.list.length; i++) {
+							li = document.createElement('li');
+							li.className = "tab_ul_yg clearfix"
+							li.innerHTML =	'<a href="index-tab-yg.html">'+
+												'<img src="img/yiguan.png"/>'+
+												'<div class="yg_text">'+
+													'<p>国医馆</p>'+
+													'<p class="addr_p"><i></i>'+data.list[i].address+'</p>'
+												'</div>'+
+											'</a>'
+							fragment.appendChild(li);
+						}
+						var ul = document.querySelector('#ygUl');
+						ul.appendChild(fragment);
+			        }
+				});
+			}
+			$(function(){
+				var winHeight = window.innerHeight;
+				$(".mui-control-content").height(winHeight-40-$('.tab_search_con').outerHeight());
+			});
+			window.addEventListener('resize', function(event){
+				var winHeight = window.innerHeight;
+				$(".mui-control-content").height(winHeight-40-$('.tab_search_con').outerHeight());
+			});
+			(function($) {
+				$('.mui-scroll-wrapper').scroll({
+					indicators: false //是否显示滚动条
+				});
+				var deceleration = mui.os.ios?0.003:0.0009;
+				$('.mui-scroll-wrapper').scroll({
+					bounce: false,
+					indicators: true, //是否显示滚动条
+					deceleration:deceleration
+				});
+				$.ready(function() {
+					//循环初始化所有下拉刷新，上拉加载。
+					$.each(document.querySelectorAll('.refresh-container .mui-scroll'), function(index, pullRefreshEl) {
+						$(pullRefreshEl).pullToRefresh({
+							up: {
+								callback: function() {
+									var self = this;
+									if(index==0){
+										setTimeout(function() {
+											ygNowPage++;
+											pullDown1();
+											if(ygNowPage>ygAllPage){
+												self.endPullUpToRefresh(true);
+											}else{
+												self.endPullUpToRefresh(false);
+											}
+										}, 1000);
+									}else if(index==1){
+										setTimeout(function() {
+											ysNowPage++;
+											pullDown2();
+											if(ysNowPage>ysAllPage){
+												self.endPullUpToRefresh(true);
+											}else{
+												self.endPullUpToRefresh(false);
+											}
+										}, 1000);
+									}else if(index==2){
+										console.log("第3个");
+									}
+								}
+							}
+						});
+					});
+				});
+			})(mui);
+		</script>
+	</body>
+</html>

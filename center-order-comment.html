@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<script src="js/lib/rem.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/center-order-comment.css"/>
+		<title>我的预约-点评</title>
+	</head>
+	<body>
+		<div class="comment_con">
+			<ul class="order_info">
+				<li class="clearfix">
+					<p>挂号单号</p>
+					<input type="text" disabled="disabled" value="201705260008" />
+				</li>
+				<li class="clearfix">
+					<p>就诊日期</p>
+					<input type="text" disabled="disabled" value="201705260008" />
+				</li>
+				<li class="clearfix">
+					<p>就诊人</p>
+					<input type="text" disabled="disabled" value="201705260008" />
+				</li>
+				<li class="clearfix">
+					<p>医生</p>
+					<input type="text" disabled="disabled" value="201705260008" />
+				</li>
+				<li class="clearfix">
+					<p>科室</p>
+					<input type="text" disabled="disabled" value="201705260008" />
+				</li>
+				<li class="clearfix">
+					<p>疗效</p>
+					<div class="select_div">
+						<input type="text" readonly="readonly" value="非常好" />
+						<i></i>
+						<ul>
+							<li>一般</li>
+							<li>好</li>
+							<li>非常好</li>
+						</ul>
+					</div>
+				</li>
+				<li class="clearfix">
+					<p>价格</p>
+					<div class="select_div">
+						<input type="text" readonly="readonly" value="非常好" />
+						<i></i>
+						<ul>
+							<li>一般</li>
+							<li>好</li>
+							<li>非常好</li>
+						</ul>
+					</div>
+				</li>
+				<li class="clearfix">
+					<p>其他</p>
+					<textarea></textarea>
+				</li>
+			</ul>
+			<div class="btn_con">
+				<a href="javascript:;">确认</a>
+			</div>
+		</div>
+		<script src="js/lib/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui(".comment_con").on('tap','.select_div',function(e){
+				$(this).find("ul").toggleClass("ul_show");
+			//	$(this).find("ul").width($(this).find("ul").width()+2);
+				if(e.target.tagName=="LI"){
+					$(this).find("input").val(e.target.innerHTML);
+				}
+			}); 
+		</script>
+	</body>
+</html>

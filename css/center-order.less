@@ -1,0 +1,117 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.clearfix::after,
+.clearfix::before {
+    content: "";
+    line-height: 0;
+    height: 0;
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+a{
+    text-decoration: none;
+}
+li{
+    list-style: none;
+}
+p{
+    margin: 0;
+}
+.mui-segmented-control {
+    font-size: 15px;
+    font-weight: 400;
+    position: relative;
+    display: table;
+    overflow: hidden;
+    width: 100%;
+    table-layout: fixed;
+    border: none;
+    border-radius: 3px;
+    background-color: transparent;
+    -webkit-touch-callout: none;
+}
+
+.mui-segmented-control .mui-control-item.mui-active {
+    color: #27A5DB;
+    background-color: #fff;
+    border-bottom: 2px solid #27A5DB;
+}
+
+//我的预约
+.tap_warpper{
+    a.mui-control-item{
+        background: #fff;
+        color: #000000;
+        border-left: 1px solid #DDDDDD;
+    }
+}
+.tab_ul{
+    margin: 0.266666rem 0.333333rem 0 0.333333rem;
+    display: block;
+}
+.tab_ul_cell{
+    border: 1px solid #27A5DB;
+    border-radius: 0.133333rem;
+    background: #fff;
+    padding: 0.2rem 0.266666rem;
+    margin-bottom: 0.266666rem;
+    .cell_tit{
+        display: flex;
+        display: -webkit-flex;
+        font-size: 12px;
+        p{
+            text-align: right;
+            font-size: 12px;
+            color: #333;
+            margin-right: 0.4rem;
+            float: left;
+        }
+        span{
+            font-size: 12px;
+            color: #333;
+            float: left;
+        }
+    }
+    .cell_text{
+        display: flex;
+        display: -webkit-flex;
+        width: 50%;
+        float: left;
+        p{
+            text-align: right;
+            font-size: 12px;
+            color: #333;
+            margin-right: 0.4rem;
+            float: left;
+        }
+        span{
+            float: left;
+            font-size: 12px;
+            color: #333;
+        }
+    }
+    a.blue{
+        float: right;
+        font-size: 12px;
+        color: #27A4DC;
+    }
+    a.gray{
+        float: right;
+        font-size: 12px;
+        color: #999;
+    }
+}
+.cell_text:nth-child(6),.cell_text:nth-child(7){
+    p{
+        text-indent: 1em;
+    }
+}
+.cell_text:nth-child(8){
+    p{
+        text-indent: 2em;
+    } 
+}

@@ -1,0 +1,329 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.clearfix::after,
+.clearfix::before {
+  content: "";
+  line-height: 0;
+  height: 0;
+  display: block;
+  visibility: hidden;
+  clear: both;
+}
+a {
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+p,
+input {
+  margin: 0;
+}
+.comment_con {
+  background: #fff;
+  padding: 0.266666rem 0.333333rem;
+}
+.icon_tit {
+  font-size: 14px;
+  height: 1.066666rem;
+  line-height: 1.026666rem;
+  position: relative;
+  padding-left: 0.933333rem;
+  margin-bottom: 2px;
+  background: #fff;
+  color: #333;
+}
+.icon_tit i {
+  position: absolute;
+  width: 0.426666rem;
+  height: 0.426666rem;
+  background: url(../img/feedback.png) no-repeat;
+  background-size: cover;
+  left: 0;
+  top: 0.32rem;
+  left: 0.333333rem;
+}
+.order_info li {
+  margin-bottom: 0.266666rem;
+}
+.order_info li p {
+  font-size: 14px;
+  float: left;
+  width: 25%;
+  height: 0.933333rem;
+  line-height: 0.933333rem;
+  padding-right: 0.4rem;
+  text-align: right;
+  color: #333;
+}
+.order_info li input {
+  width: 75%;
+  float: left;
+  border: 1px solid #ddd;
+  background: #fff;
+  margin: 0;
+  height: 0.933333rem;
+  line-height: 0.933333rem;
+  padding: 0;
+  color: #333;
+  font-size: 14px;
+  text-indent: 0.266666rem;
+}
+.order_info li input:disabled {
+  background: #eee;
+}
+.order_info li input.sub_left {
+  width: 55%;
+  margin-right: 5%;
+}
+.order_info li input.sub_right {
+  width: 15%;
+}
+.order_info li textarea {
+  width: 75%;
+  float: left;
+  border: 1px solid #ddd;
+  background: #fff;
+  margin: 0;
+  height: 3.733333rem;
+  padding: 0 0.133333rem;
+  color: #333;
+  font-size: 12px;
+  text-indent: 0.266666rem;
+}
+.order_info li textarea:disabled {
+  background: #EEEEEE;
+}
+.order_info li .select_div {
+  width: 75%;
+  float: left;
+  border: 1px solid #ddd !important;
+  background: #fff;
+  margin: 0;
+  height: 0.933333rem;
+  line-height: 0.933333rem;
+  padding: 0;
+  color: #333;
+  font-size: 14px;
+  text-indent: 0.266666rem;
+  border-radius: 0.066666rem;
+  position: relative;
+}
+.order_info li .select_div input {
+  display: block;
+  background: #fff;
+  border: none;
+  width: 100% ;
+  margin: 0;
+  height: 100%;
+  padding: 0;
+  color: #333;
+  font-size: 14px;
+  text-indent: 0.266666rem;
+  border-radius: 0.066666rem;
+}
+.order_info li .select_div i {
+  position: absolute;
+  top: 0.333333rem;
+  right: 0.266666rem;
+  width: 0;
+  height: 0;
+  border-left: 0.133333rem solid transparent;
+  border-right: 0.133333rem solid transparent;
+  border-top: 0.266666rem solid #9A9A9A;
+}
+.order_info li .select_div ul {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0.906666rem;
+  width: 100%;
+  background: #fff;
+  margin: 0;
+  padding: 0;
+  border-radius: 0.066666rem;
+  border: 1px solid #ddd;
+  border-top: 0;
+  z-index: 99;
+}
+.order_info li .select_div ul li {
+  color: #333;
+  font-size: 14px;
+  text-indent: 0.266666rem;
+  margin: 0;
+  background: #fff;
+}
+.order_info li .select_div ul.ul_show {
+  display: block;
+}
+.order_info li .radio_div {
+  width: 75%;
+  float: left;
+  background: #fff;
+  margin: 0;
+  height: 0.933333rem;
+  line-height: 0.933333rem;
+  padding: 0;
+  color: #333;
+  font-size: 14px;
+  text-indent: 0.266666rem;
+  border-radius: 0.066666rem;
+  position: relative;
+  overflow: hidden;
+}
+.order_info li .radio_div label {
+  font-size: 14px;
+  margin-right: 0.266666rem;
+}
+.order_info li .radio_div input[type="radio"] {
+  width: 0.4rem;
+  height: 0.4rem;
+  float: none;
+  background: #fff;
+  margin: 0;
+  margin-right: 0.133333rem;
+  color: #333;
+  font-size: 14px;
+  vertical-align: middle;
+}
+.order_info li .left_select {
+  width: 55% !important;
+  margin-right: 5% !important;
+}
+.order_info li .right_select {
+  width: 15% !important;
+}
+.order_info li:nth-last-child(1) {
+  margin-bottom: 0;
+}
+.btn_con {
+  margin-top: 0.4rem;
+}
+.btn_con a {
+  font-size: 16px;
+  display: block;
+  height: 1.066666rem;
+  line-height: 1.066666rem;
+  background: #27A4DC;
+  color: #fff;
+  text-align: center;
+  border-radius: 0.133333rem;
+}
+@media screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) {
+  .order_info li {
+    margin-bottom: 0.266666rem;
+  }
+  .order_info li p {
+    font-size: 12px;
+    float: left;
+    width: 25%;
+    height: 0.933333rem;
+    line-height: 0.933333rem;
+    padding-right: 0.4rem;
+    text-align: right;
+    color: #333;
+  }
+  .order_info li input:disabled {
+    width: 75%;
+    float: left;
+    border: 1px solid #ddd;
+    background: #eee;
+    margin: 0;
+    height: 0.933333rem;
+    line-height: 0.933333rem;
+    padding: 0;
+    color: #333;
+    font-size: 14px;
+    text-indent: 0.266666rem;
+  }
+  .order_info li input.sub_left {
+    width: 55%;
+    margin-right: 5%;
+  }
+  .order_info li input.sub_right {
+    width: 15%;
+  }
+  .order_info li textarea {
+    width: 75%;
+    float: left;
+    border: 1px solid #ddd;
+    background: #fff;
+    margin: 0;
+    height: 3.733333rem;
+    padding: 0 0.133333rem;
+    color: #333;
+    font-size: 12px;
+    text-indent: 0.266666rem;
+  }
+  .order_info li textarea:disabled {
+    background: #EEEEEE;
+  }
+  .order_info li .select_div {
+    width: 75%;
+    float: left;
+    border: 1px solid #ddd !important;
+    background: #fff;
+    margin: 0;
+    height: 0.933333rem;
+    line-height: 0.933333rem;
+    padding: 0;
+    color: #333;
+    font-size: 14px;
+    text-indent: 0.266666rem;
+    border-radius: 0.066666rem;
+    position: relative;
+  }
+  .order_info li .select_div input {
+    display: block;
+    background: #fff;
+    border: none;
+    width: 100% ;
+    margin: 0;
+    height: 100%;
+    padding: 0;
+    color: #333;
+    font-size: 14px;
+    text-indent: 0.266666rem;
+    border-radius: 0.066666rem;
+  }
+  .order_info li .select_div i {
+    position: absolute;
+    top: 0.333333rem;
+    right: 0.266666rem;
+    width: 0;
+    height: 0;
+    border-left: 0.133333rem solid transparent;
+    border-right: 0.133333rem solid transparent;
+    border-top: 0.266666rem solid #9A9A9A;
+  }
+  .order_info li .select_div ul {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0.906666rem;
+    width: 100%;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+    border-radius: 0.066666rem;
+    border: 1px solid #ddd;
+    border-top: 0;
+    z-index: 99;
+  }
+  .order_info li .select_div ul li {
+    color: #333;
+    font-size: 14px;
+    text-indent: 0.266666rem;
+    margin: 0;
+    background: #fff;
+  }
+  .order_info li .select_div ul.ul_show {
+    display: block;
+  }
+  .order_info li:nth-last-child(1) {
+    margin-bottom: 0;
+  }
+}

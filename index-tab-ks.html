@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<script src="js/lib/rem.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index-tab-main.css"/>
+		<title>主界面-按科室</title>
+	</head>
+	<body>
+		<div class="mui-control-content mui-active">
+			<div  class="mui-content mui-scroll-wrapper refresh-container">
+			  <div class="mui-scroll">
+				<ul class="tab_ul">
+					<li class="tab_ul_ys clearfix">
+						<a href="index-tab-ks-sub.html">
+							<img src="img/yisheng.png"/>
+							<div class="ys_text">
+								<p>李主任<span>男</span></p>
+								<p>骨科</p>
+							</div>
+							<div class="ys_price">
+								<p>专家号</p>
+								<p>¥ 200</p>
+							</div>
+						</a>
+					</li>
+				</ul>
+			  </div>
+			</div>
+		</div>
+		<script src="js/lib/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/mui.pullToRefresh.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/mui.pullToRefresh.material.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				var winHeight = window.innerHeight;
+				$(".mui-control-content").height(winHeight);
+			});
+			window.addEventListener('resize', function(event){
+				var winHeight = window.innerHeight;
+				$(".mui-control-content").height(winHeight);
+			});
+			(function($) {
+				$('.mui-scroll-wrapper').scroll({
+					indicators: false //是否显示滚动条
+				});
+				var deceleration = mui.os.ios?0.003:0.0009;
+				$('.mui-scroll-wrapper').scroll({
+					bounce: false,
+					indicators: true, //是否显示滚动条
+					deceleration:deceleration
+				});
+				$.ready(function() {
+					//循环初始化所有下拉刷新，上拉加载。
+					$.each(document.querySelectorAll('.refresh-container .mui-scroll'), function(index, pullRefreshEl) {
+						$(pullRefreshEl).pullToRefresh({
+							up: {
+								callback: function() {
+									var self = this;
+									setTimeout(function() {
+										var ul = self.element.querySelector('.tab_ul');
+										ul.appendChild(createFragment(ul, index, 3));
+										self.endPullUpToRefresh();
+									}, 1000);
+								}
+							}
+						});
+					});
+					var createFragment = function(ul, index, count, reverse) {
+						var length = ul.querySelectorAll('li').length;
+						var fragment = document.createDocumentFragment();
+						var li;
+						for (var i = 0; i < count; i++) {
+							li = document.createElement('li');
+							li.className = "clearfix"
+							li.innerHTML =	'<li class="tab_ul_ys clearfix">'+
+												'<a href="index-tab-ks-sub.html">'+
+													'<img src="img/yisheng.png"/>'+
+													'<div class="ys_text">'+
+														'<p>李主任<span>男</span></p>'+
+														'<p>骨科</p>'+
+													'</div>'+
+													'<div class="ys_price">'+
+														'<p>专家号</p>'+
+														'<p>¥ 200</p>'+
+													'</div>'+
+												'<a/>'	
+											'</li>'
+							fragment.appendChild(li);
+						}
+						return fragment;
+					};
+				});
+			})(mui);
+		</script>
+	</body>
+</html>

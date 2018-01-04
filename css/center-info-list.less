@@ -1,0 +1,96 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.clearfix::after,
+.clearfix::before {
+    content: "";
+    line-height: 0;
+    height: 0;
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+a{
+    text-decoration: none;
+}
+li{
+    list-style: none;
+}
+p{
+    margin: 0;
+}
+.info_list_con{
+    width: 10rem;
+    margin: 0 auto;
+}
+.info_list{
+    li{
+        background: #fff;
+        height: 2.133333rem;
+        width: 10rem;
+        overflow: hidden;
+        .info_view{
+            width: 14.266666rem;
+        }
+        .left_text{
+            height: 2.133333rem;
+            width: 10rem;
+            padding: 0.266666rem 0.4rem;
+            padding-bottom: 0.2rem;
+            position: relative;
+            float: left;
+            p{
+                color: #333;
+                font-size: 12px;
+                line-height:0.533333rem;
+                max-height: 1.066666rem;
+                overflow: hidden;
+                text-overflow:ellipsis;
+            }
+            .info_date{
+                font-size: 12px;
+                float: left;
+                height: 0.533333rem;
+                position: absolute;
+                bottom: 0.2rem;
+                left: 0.4rem;
+            }
+            .view_detail{
+                font-size: 12px;
+                height: 0.533333rem;
+                position: absolute;
+                bottom: 0.2rem;
+                right: 0.4rem;
+                display: block;
+                color: #27a4dc;
+            }
+        }
+        .right_btn{
+            height: 2.133333rem;
+            width: 4.266666rem;
+            background: #595AD3;
+            float: left;
+            display: -webkit-flex;
+            display: flex;
+            a{
+                font-size: 0.426666rem;
+                height: 2.133333rem;
+                width: 2.133333rem;
+                color: #fff;
+                padding: 0.533333rem;
+                text-align: center;
+            }
+            a.hide{
+                line-height: 0.533333rem;
+                background: #595AD3;
+            }
+            a.delet{
+                line-height: 1.066666rem;
+                background: #FF3B30;
+            }
+        }
+    }
+}
+

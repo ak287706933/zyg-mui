@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<script src="js/lib/rem.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index-tab-yg.css"/>
+		<title>主界面-按科室-科室页</title>
+	</head>
+	<body>
+		<li class="tab_ul_ys clearfix">
+			<img src="img/yisheng.png"/>
+			<div class="ys_text">
+				<p>李主任<span>男</span></p>
+				<p>骨科</p>
+			</div>
+			<div class="ys_price">
+				<p>专家号</p>
+				<p>¥ 200</p>
+			</div>
+		</li>
+		<div class="order_table_con">
+			<ul class="reg_card_ul">
+				<div class="tic_card">
+					<label class="tab_ul_yg clearfix">
+						<img src="img/yiguan.png"/>
+						<div class="yg_text">
+							<p>国医馆</p>
+							<p class="addr_p"><i></i>地址</p>
+						</div>
+					</label>
+					<p class="reg_tit clearfix">
+						预约挂号
+						<i></i>
+						<span><b class="gray"></b>无号</span>
+						<span><b class="blue"></b>有号</span>
+					</p>
+					<div class="reg_table">
+						<div class="table_list">
+							<dl class="date_line clearfix">
+								<dt>排班表</dt>
+								<dd><span>周一</span><span>05-22</span></dd>
+								<dd><span>周一</span><span>05-22</span></dd>
+								<dd><span>周一</span><span>05-22</span></dd>
+								<dd><span>周一</span><span>05-22</span></dd>
+								<dd><span>周一</span><span>05-22</span></dd>
+								<dd><span>周一</span><span>05-22</span></dd>
+								<dd><span>周一</span><span>05-22</span></dd>
+							</dl>
+							<dl class="morning clearfix">
+								<dt>上午</dt>
+								<dd><i class="sell_out">已停</i></dd>
+								<dd></dd>
+								<dd><i class="sell_out">已满</i></dd>
+								<dd></dd>
+								<dd><a href="#"><span>剩余</span><span>9</span></a></dd>
+								<dd></dd>
+								<dd></dd>
+							</dl>
+							<dl class="afternoon clearfix">
+								<dt>下午</dt>
+								<dd><i class="sell_out">已停</i></dd>
+								<dd></dd>
+								<dd><i class="sell_out">已满</i></dd>
+								<dd></dd>
+								<dd></dd>
+								<dd><a href="#"><span>剩余</span><span>9</span></a></dd>
+								<dd></dd>
+							</dl>
+						</div>
+					</div>
+				</div>
+				<div class="tic_card">
+					<label class="tab_ul_yg clearfix">
+						<img src="img/yiguan.png"/>
+						<div class="yg_text">
+							<p>国医馆</p>
+							<p class="addr_p"><i></i>地址</p>
+						</div>
+					</label>
+					<p class="reg_tit clearfix">
+						预约挂号
+						<i></i>
+						<span><b class="gray"></b>无号</span>
+						<span><b class="blue"></b>有号</span>
+					</p>
+					<div class="reg_table">
+						<div class="table_list">
+							<dl class="date_line clearfix">
+								<dt>排班表</dt>
+								<dd><span>周一</span><span>05-22</span></dd>
+								<dd><span>周一</span><span>05-22</span></dd>
+								<dd><span>周一</span><span>05-22</span></dd>
+								<dd><span>周一</span><span>05-22</span></dd>
+								<dd><span>周一</span><span>05-22</span></dd>
+								<dd><span>周一</span><span>05-22</span></dd>
+								<dd><span>周一</span><span>05-22</span></dd>
+							</dl>
+							<dl class="morning clearfix">
+								<dt>上午</dt>
+								<dd><i class="sell_out">已停</i></dd>
+								<dd></dd>
+								<dd><i class="sell_out">已满</i></dd>
+								<dd></dd>
+								<dd><a href="#"><span>剩余</span><span>9</span></a></dd>
+								<dd></dd>
+								<dd></dd>
+							</dl>
+							<dl class="afternoon clearfix">
+								<dt>下午</dt>
+								<dd><i class="sell_out">已停</i></dd>
+								<dd></dd>
+								<dd><i class="sell_out">已满</i></dd>
+								<dd></dd>
+								<dd></dd>
+								<dd><a href="#"><span>剩余</span><span>9</span></a></dd>
+								<dd></dd>
+							</dl>
+						</div>
+					</div>
+				</div>
+			</ul>
+		</div>
+		<script src="js/lib/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/mui.pullToRefresh.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/mui.pullToRefresh.material.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			//日期格式化
+			function funDate(aa){
+		        var date1 = new Date(),
+		        time1=date1.getFullYear()+"-"+(date1.getMonth()+1)+"-"+date1.getDate();
+		        var date2 = new Date(date1);
+		        date2.setDate(date1.getDate()+aa);
+		        var time2 = date2.getFullYear()+"-"+(date2.getMonth()+1)+"-"+date2.getDate();
+		        var myMonth = (date2.getMonth()+1);
+		        var myDate = date2.getDate();
+		      	var myWeek =  ['周日','周一','周二','周三','周四','周五','周六'][date2.getDay()];
+		        if(myMonth<10){
+		        	myMonth = "0"+myMonth;
+		        }
+		        if(myDate<10){
+		        	myDate = "0"+myDate;
+		        }
+		        var endFormatTime = myMonth+"-"+myDate;
+		        var funDate = {
+		        	"orderDate":endFormatTime,
+		        	"orderWeek":myWeek
+		        };
+		        return funDate;
+		    }
+			//设置日期
+			function setTableDate(){
+				$(".table_list").find(".date_line").each(function(index,ele){
+					$(ele).find("dd").each(function(index,ele){
+						$(ele).find("span").eq(0).html(funDate(index+1).orderWeek);
+						$(ele).find("span").eq(1).html(funDate(index+1).orderDate);
+					});
+				});
+			}
+			//加载执行
+			$(function(){
+				setTableDate();
+			});
+		</script>
+	</body>
+</html>

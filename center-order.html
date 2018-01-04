@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<script src="js/lib/rem.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/center-order.css"/>
+		<title>我的预约</title>
+	</head>
+	<body>
+		<div class="tap_warpper">
+			<div id="segmentedControl" class="mui-segmented-control">
+				<a class="mui-control-item mui-active" href="#item1">单前预约</a>
+				<a class="mui-control-item" href="#item2">历史就诊</a>
+			</div>
+		</div>
+		<div>
+			<div id="item1" class="mui-control-content mui-active">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="tab_ul">
+							<li class="tab_ul_cell clearfix">
+								<div class="cell_tit"><p>中医馆名称</p><span>中医馆</span></div>
+								<div class="cell_text"><p>挂号单号</p><span>3216545645</span></div>
+								<div class="cell_text"><p>就诊日期</p><span>3216545645</span></div>
+								<div class="cell_text"><p>挂号科室</p><span>3216545645</span></div>
+								<div class="cell_text"><p>医生姓名</p><span>3216545645</span></div>
+								<div class="cell_text"><p>就诊人</p><span>张三</span></div>
+								<div class="cell_text"><p>挂号费</p><span>200</span></div>
+								<div class="cell_text"><p>状态</p><span>预约成功</span></div>
+								<a href="javascript:;" class="blue">取消预约</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div id="item2" class="mui-control-content">
+				<div class="mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<ul class="tab_ul">
+							<li class="tab_ul_cell clearfix">
+								<div class="cell_tit"><p>中医馆名称</p><span>中医馆</span></div>
+								<div class="cell_text"><p>挂号单号</p><span>3216545645</span></div>
+								<div class="cell_text"><p>就诊日期</p><span>2017-05-30</span></div>
+								<div class="cell_text"><p>挂号科室</p><span>3216545645</span></div>
+								<div class="cell_text"><p>医生姓名</p><span>3216545645</span></div>
+								<div class="cell_text"><p>就诊人</p><span>张三</span></div>
+								<div class="cell_text"><p>挂号费</p><span>200</span></div>
+								<div class="cell_text"><p>状态</p><span>预约成功</span></div>
+								<a href="javascript:;" class="blue">写点评</a>
+							</li>
+							<li class="tab_ul_cell clearfix">
+								<div class="cell_tit"><p>中医馆名称</p><span>中医馆</span></div>
+								<div class="cell_text"><p>挂号单号</p><span>3216545645</span></div>
+								<div class="cell_text"><p>就诊日期</p><span>3216545645</span></div>
+								<div class="cell_text"><p>挂号科室</p><span>3216545645</span></div>
+								<div class="cell_text"><p>医生姓名</p><span>3216545645</span></div>
+								<div class="cell_text"><p>就诊人</p><span>张三</span></div>
+								<div class="cell_text"><p>挂号费</p><span>200</span></div>
+								<div class="cell_text"><p>状态</p><span>预约成功</span></div>
+								<a href="javascript:;" class="gray">已点评</a>
+							</li>
+							<li class="tab_ul_cell clearfix">
+								<div class="cell_tit"><p>中医馆名称</p><span>中医馆</span></div>
+								<div class="cell_text"><p>挂号单号</p><span>3216545645</span></div>
+								<div class="cell_text"><p>就诊日期</p><span>2017-05-30</span></div>
+								<div class="cell_text"><p>挂号科室</p><span>3216545645</span></div>
+								<div class="cell_text"><p>医生姓名</p><span>3216545645</span></div>
+								<div class="cell_text"><p>就诊人</p><span>张三</span></div>
+								<div class="cell_text"><p>挂号费</p><span>200</span></div>
+								<div class="cell_text"><p>状态</p><span>预约成功</span></div>
+								<a href="javascript:;" class="blue">写点评</a>
+							</li>
+							<li class="tab_ul_cell clearfix">
+								<div class="cell_tit"><p>中医馆名称</p><span>中医馆</span></div>
+								<div class="cell_text"><p>挂号单号</p><span>3216545645</span></div>
+								<div class="cell_text"><p>就诊日期</p><span>3216545645</span></div>
+								<div class="cell_text"><p>挂号科室</p><span>3216545645</span></div>
+								<div class="cell_text"><p>医生姓名</p><span>3216545645</span></div>
+								<div class="cell_text"><p>就诊人</p><span>张三</span></div>
+								<div class="cell_text"><p>挂号费</p><span>200</span></div>
+								<div class="cell_text"><p>状态</p><span>预约成功</span></div>
+								<a href="javascript:;" class="gray">已点评</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/lib/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				var winHeight = window.innerHeight;
+				$(".mui-control-content").height(winHeight-40);
+			});
+			window.addEventListener('resize', function(event){
+				var winHeight = window.innerHeight;
+				$(".mui-control-content").height(winHeight-40);
+			});
+			(function($) {
+				$('.mui-scroll-wrapper').scroll({
+					indicators: false //是否显示滚动条
+				});
+			})(mui);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<script src="js/lib/rem.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<title>主界面</title>
+	</head>
+	<body>
+		<!--轮播图-->
+		<div class="mui-slider main_banner">
+			  <div class="mui-slider-group mui-slider-loop">
+			    <!--支持循环，需要重复图片节点 第一张前面加最后一张-->
+			    <div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="img/4.jpg" /></a></div>
+			    <div class="mui-slider-item"><a href="#"><img src="img/1.jpg" /></a></div>
+			    <div class="mui-slider-item"><a href="#"><img src="img/2.jpg" /></a></div>
+			    <div class="mui-slider-item"><a href="#"><img src="img/3.jpg" /></a></div>
+			    <div class="mui-slider-item"><a href="#"><img src="img/4.jpg" /></a></div>
+			    <!--支持循环，需要重复图片节点 最后一张后面加第一张-->
+			    <div class="mui-slider-item mui-slider-item-duplicate"><a href="#"><img src="img/1.jpg" /></a></div>
+			  </div>
+				<div class="mui-slider-indicator">
+					<div class="mui-indicator mui-active"></div>
+					<div class="mui-indicator"></div>
+					<div class="mui-indicator"></div>
+					<div class="mui-indicator"></div>
+				</div>
+		</div>
+		<!--挂号分类-->
+		<div class="warp">
+			<p class="item_tit">挂号分类</p>
+			<ul class="reg_list clearfix">
+				<li><img src="img/keshi.png"/></li>
+				<li><img src="img/yiguan.png"/></li>
+				<li><img src="img/yisheng.png"/></li>
+			</ul>
+		</div>
+		<!--医馆推荐-->
+		<div class="warp">
+			<p class="item_tit">医馆推荐</p>
+			<ul class="yg_list clearfix">
+				<li class="clearfix">
+					<img src="img/keshi.png"/>
+					<div class="r_text">
+						<p class="hos_name">国医馆</p>
+						<p class="hos_addr"><i></i>雷锋大道149号</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!--医生推荐 下拉刷新-->
+		<div class="warp">
+			<p class="item_tit">医生推荐</p>
+			<div class="doct_view">
+				<div class="mui-slider-group">
+				<div id="refreshContainer" class="mui-content mui-scroll-wrapper">
+				  <div class="mui-scroll">
+				    <!--数据列表-->
+				    <ul class="mui-table-view mui-table-view-chevron doct_list">
+	      				<li class="clearfix">
+							<img src="img/keshi.png"/>
+							<div class="doc_info">
+								<p class="doc_name">张三<span>男</span></p>
+								<p class="doc_dep">内科</p>
+							</div>
+						</li>
+						<li class="clearfix">
+							<img src="img/keshi.png"/>
+							<div class="doc_info">
+								<p class="doc_name">张三<span>男</span></p>
+								<p class="doc_dep">内科</p>
+							</div>
+						</li>
+						<li class="clearfix">
+							<img src="img/keshi.png"/>
+							<div class="doc_info">
+								<p class="doc_name">张三<span>男</span></p>
+								<p class="doc_dep">内科</p>
+							</div>
+						</li>
+				    </ul>
+				  </div>
+				</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/lib/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/mui.pullToRefresh.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/mui.pullToRefresh.material.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var gallery = mui('.mui-slider');
+			gallery.slider({
+			  interval:5000//自动轮播周期，若为0则不自动播放。
+			});
+			var nowPage = 1;
+			//post请求，页码做参数，
+			function pullDown(){
+		    	$.ajax({
+			        url : 'test.json',
+			        type : "get",
+			        dataType : "json",
+			        success : function(data) {
+						var fragment = document.createDocumentFragment();
+						var li;
+						for (var i = 0; i < data.length; i++) {
+							li = document.createElement('li');
+							li.className = "clearfix"
+							 	
+							li.innerHTML =		'<img src="img/keshi.png"/>'+
+												'<div class="doc_info">'+
+													'<p class="doc_name">'+data[i].name+'<span>男</span></p>'+
+													'<p class="doc_dep">'+data[i].dep+'</p>'+
+												'</div>';
+							fragment.appendChild(li);
+						}
+						var ul = document.querySelector('.mui-table-view');
+						ul.appendChild(fragment);
+			        }
+				});
+			}
+			(function($) {
+				//阻尼系数
+				var deceleration = mui.os.ios?0.003:0.0009;
+				$('.mui-scroll-wrapper').scroll({
+					bounce: false,
+					indicators: true, //是否显示滚动条
+					deceleration:deceleration
+				});
+				$.ready(function() {
+					//循环初始化所有下拉刷新，上拉加载。
+					$.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
+						$(pullRefreshEl).pullToRefresh({
+							up: {
+								callback: function() {
+									var self = this;
+									setTimeout(function() {
+										nowPage++;
+										console.log(nowPage);
+										pullDown();
+										if(nowPage>1){//结束下拉刷新
+											self.endPullUpToRefresh(true);
+										}else{
+											self.endPullUpToRefresh(false);
+										}
+									}, 1000);
+								}
+							}
+						});
+					});
+				});
+			})(mui);
+		</script>
+	</body>
+</html>

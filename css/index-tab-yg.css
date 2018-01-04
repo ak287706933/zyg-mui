@@ -1,0 +1,309 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.clearfix::after,
+.clearfix::before {
+  content: "";
+  line-height: 0;
+  height: 0;
+  display: block;
+  visibility: hidden;
+  clear: both;
+}
+a {
+  text-decoration: none;
+}
+li {
+  list-style: none;
+}
+p,
+input {
+  margin: 0;
+}
+b,
+i {
+  font-style: normal;
+}
+.mui-segmented-control {
+  font-size: 15px;
+  font-weight: 400;
+  position: relative;
+  display: table;
+  overflow: hidden;
+  width: 100%;
+  table-layout: fixed;
+  border: none;
+  border-radius: 3px;
+  background-color: transparent;
+  -webkit-touch-callout: none;
+}
+.mui-segmented-control .mui-control-item.mui-active {
+  color: #27A5DB;
+  background-color: #fff;
+  border-bottom: 2px solid #27A5DB;
+}
+.mui-pull-bottom-tips {
+  text-align: center;
+  background-color: #efeff4;
+  font-size: 15px;
+  line-height: 40px;
+  color: #777;
+}
+.tap_warpper a.mui-control-item {
+  background: #fff;
+  color: #000000;
+  border-left: 1px solid #DDDDDD;
+}
+.tab_ul {
+  margin: 0
+    display: block;
+}
+.tab_ul a {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.order_table_con {
+  position: relative;
+  margin-top: 5px;
+}
+.tic_card {
+  margin-top: 0.133333rem;
+  background: #fff;
+}
+.tic_card .reg_tit {
+  font-size: 15px;
+  line-height: 0.4rem;
+  padding: 0 0.4rem 0.4rem 0.933333rem;
+  color: #333;
+  position: relative;
+}
+.tic_card .reg_tit i {
+  position: absolute;
+  top: 0;
+  left: 0.4rem;
+  width: 0.426666rem;
+  height: 0.426666rem;
+  background: url(../img/order.png) no-repeat;
+  background-size: cover;
+}
+.tic_card .reg_tit span {
+  float: right;
+  font-size: 13px;
+  line-height: 0.4rem;
+  color: #333;
+  padding-left: 0.4rem;
+  position: relative;
+  margin-left: 0.2rem;
+}
+.tic_card .reg_tit span b {
+  position: absolute;
+  top: 0.066666rem;
+  left: 0;
+  display: block;
+  width: 0.266666rem;
+  height: 0.266666rem;
+}
+.tic_card .reg_tit span b.gray {
+  background: #ddd;
+}
+.tic_card .reg_tit span b.blue {
+  background: #27A4DC;
+}
+.tic_card:nth-child(1) {
+  margin-top: 0;
+}
+.table_list {
+  border: 1px solid #ddd;
+}
+.reg_table {
+  padding: 0 0.4rem 0.4rem 0.4rem;
+  font-size: 12px;
+}
+.reg_table dl {
+  display: flex;
+  display: -webkit-flex;
+  border-bottom: 1px solid #ddd;
+  height: 1.12rem;
+}
+.reg_table dl dt {
+  height: 1.12rem;
+  line-height: 1.12rem;
+  text-align: center;
+  overflow: hidden;
+  flex: 1;
+  -webkit-flex: 1;
+}
+.reg_table dl dd {
+  flex: 1;
+  -webkit-flex: 1;
+  height: 1.12rem;
+  border-left: 1px solid #ddd;
+  text-align: center;
+}
+.reg_table dl dd span {
+  width: 100%;
+  display: block;
+  text-align: center;
+}
+.reg_table dl dd i.sell_out {
+  display: block;
+  width: 100%;
+  height: 100%;
+  line-height: 1.12rem;
+  color: #999;
+  background: #eee;
+  border-bottom: 1px solid #ddd;
+}
+.reg_table dl dd a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.reg_table dl dd a span {
+  background: #27A4DC;
+  color: #fff;
+}
+.reg_table dl:nth-last-child(1) {
+  border-bottom: none;
+}
+.tab_ul_yg {
+  display: block;
+  height: 2.266666rem;
+  background: #fff;
+  padding: 0.4rem;
+}
+.tab_ul_yg img {
+  display: block;
+  float: left;
+  width: 1.466666rem;
+  height: 1.466666rem;
+  margin-right: 0.4rem;
+}
+.tab_ul_yg .yg_text {
+  float: left;
+  padding: 0.066666rem 0;
+}
+.tab_ul_yg .yg_text p {
+  font-size: 15px;
+  color: #333;
+  height: 0.666666rem;
+  line-height: 0.666666rem;
+  position: relative;
+}
+.tab_ul_yg .yg_text p i {
+  position: absolute;
+  left: 0;
+  top: 0.106666rem;
+  width: 0.426666rem;
+  height: 0.426666rem;
+  background: url(../img/addr.png) no-repeat;
+  background-size: cover;
+}
+.tab_ul_yg .yg_text p.addr_p {
+  color: #27A4DC;
+  padding-left: 0.533333rem;
+}
+.tab_ul_ys {
+  display: block;
+  height: 2.266666rem;
+  background: #fff;
+  padding: 0.4rem;
+}
+.tab_ul_ys img {
+  display: block;
+  float: left;
+  width: 1.466666rem;
+  height: 1.466666rem;
+  margin-right: 0.4rem;
+}
+.tab_ul_ys .ys_text {
+  float: left;
+  padding: 0.066666rem 0;
+}
+.tab_ul_ys .ys_text p {
+  font-size: 15px;
+  color: #333;
+  height: 0.666666rem;
+  line-height: 0.666666rem;
+}
+.tab_ul_ys .ys_text p span {
+  padding-left: 0.533333rem;
+}
+.tab_ul_ys .ys_price {
+  float: right;
+  padding: 0.066666rem 0;
+}
+.tab_ul_ys .ys_price p {
+  font-size: 15px;
+  color: #27A4DC;
+  height: 0.666666rem;
+  line-height: 0.666666rem;
+  text-align: right;
+}
+@media screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) {
+  .tic_card {
+    margin-top: 0.133333rem;
+    background: #fff;
+  }
+  .tic_card .reg_tit {
+    font-size: 15px;
+    line-height: 15px;
+    padding: 0 0.4rem 0.4rem 0.933333rem;
+    color: #333;
+    position: relative;
+  }
+  .reg_table {
+    padding: 0 0.4rem 0.4rem 0.4rem;
+    font-size: 12px;
+  }
+  .reg_table dl {
+    display: flex;
+    display: -webkit-flex;
+    border-bottom: 1px solid #ddd;
+    height: 42px;
+  }
+  .reg_table dl dt {
+    height: 42px;
+    line-height: 42px;
+    text-align: center;
+    overflow: hidden;
+    flex: 1;
+    -webkit-flex: 1;
+  }
+  .reg_table dl dd {
+    flex: 1;
+    -webkit-flex: 1;
+    height: 42px;
+    border-left: 1px solid #ddd;
+    text-align: center;
+  }
+  .reg_table dl dd span {
+    width: 100%;
+    display: block;
+    text-align: center;
+  }
+  .reg_table dl dd i.sell_out {
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 42px;
+    color: #999;
+    background: #eee;
+    border-bottom: 1px solid #ddd;
+  }
+  .reg_table dl dd a {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .reg_table dl dd a span {
+    background: #27A4DC;
+    color: #fff;
+  }
+  .reg_table dl:nth-last-child(1) {
+    border-bottom: none;
+  }
+}

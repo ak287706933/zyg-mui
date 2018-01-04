@@ -1,0 +1,30 @@
+{
+	"index-tab-main.html": {
+		"refer": [
+			"index-tab-yg.html",
+			"index-tab-ks.html",
+			"index-tab-ys.html"
+		]
+	},
+	"index-tab-yg.html": {
+		"refer": [
+			"index-tab-main.html"
+		]
+	},
+	"index-tab-ks.html": {
+		"refer": [
+			"index-tab-main.html",
+			"index-tab-ks-sub.html"
+		]
+	},
+	"index-tab-ks-sub.html": {
+		"refer": [
+			"index-tab-ks.html"
+		]
+	},
+	"index-tab-ys.html": {
+		"refer": [
+			"index-tab-main.html"
+		]
+	}
+}

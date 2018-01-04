@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<script src="js/lib/rem.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/center-account-manage.css"/>
+		<title>个人中心-账号管理</title>
+	</head>
+	<body>
+		<div class="account_list">
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="list_ul">
+						<li class="clearfix">
+							<div class="cell_text"><p>姓名</p><span>张三</span><span>男</span></div>
+							<div class="cell_text"><p>出生日期</p><span>1994-02-21</span></div>
+							<div class="cell_text"><p>出生日期</p><span>1994-02-21</span></div>
+							<div class="cell_text"><p>出生日期</p><span>1994-02-21</span></div>
+							<div class="li_btn">
+								<a href="javascript:;">修改</a> |
+								<a href="javascript:;">删除</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="account_add_btn">
+			<a href="javascript:;">添加姓名</a>
+		</div>
+		<script src="js/lib/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				var winHeight = window.innerHeight;
+				$(".account_list").height(winHeight-$(".account_add_btn").outerHeight());
+			});
+			window.addEventListener('resize', function(event){
+				var winHeight = window.innerHeight;
+				$(".account_list").height(winHeight-$(".account_add_btn").outerHeight());
+			});
+			(function($) {
+				$('.mui-scroll-wrapper').scroll({
+					indicators: false //是否显示滚动条
+				});
+			})(mui);
+		</script>
+	</body>
+</html>

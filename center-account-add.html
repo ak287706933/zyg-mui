@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<script src="js/lib/rem.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/mui.picker.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/mui.poppicker.css"/>
+		<link rel="stylesheet" type="text/css" href="css/center-order-comment.css"/>
+		<title>我的账号-添加</title>
+	</head>
+	<body>
+		<div class="comment_con">
+			<ul class="order_info">
+				<li class="clearfix">
+					<p>姓名</p>
+					<input type="text"  value="张三" />
+				</li>
+				<li class="clearfix">
+					<p>性别</p>
+					<div class="radio_div">
+						<label><input type="radio" value="男" name="sex"/>男</label>
+						<label><input type="radio" value="女" name="sex"/>女</label>
+					</div>
+				</li>
+				<li class="clearfix">
+					<p>出生日期</p>
+					<input type="text"  value="点击选择日期" readonly="readonly" class="date-picker" data-options='{"type":"date","beginYear":1924,"endYear":2022}' />
+				</li>
+				<li class="clearfix">
+					<p>会员卡号</p>
+					<input type="number"  value="201705260008" />
+				</li>
+				<li class="clearfix">
+					<p>联系电话</p>
+					<input type="number"  value="201705260008" />
+				</li>
+				<li class="clearfix">
+					<p>地址</p>
+					<input type="text" id='showCityPicker3' value="点击选择地址" readonly="readonly" class="date-picker" />
+				</li>
+			</ul>
+			<div class="btn_con">
+				<a href="javascript:;">确认</a>
+			</div>
+		</div>
+		<script src="js/lib/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/mui.picker.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/mui.poppicker.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/city.data.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/city.data-3.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui(".comment_con").on('tap','.select_div',function(e){
+				$(this).find("ul").toggleClass("ul_show");
+				if(e.target.tagName=="LI"){
+					$(this).find("input").val(e.target.innerHTML);
+				}
+			}); 
+			//datePicker
+			(function($) {
+				$.init();
+				var btn = $('.date-picker')[0];
+				var result = $('.date-picker')[0];
+				btn.addEventListener('tap', function() {
+					var optionsJson = this.getAttribute('data-options') || '{}';
+					var options = JSON.parse(optionsJson);
+					var id = this.getAttribute('id');
+					var picker = new $.DtPicker(options);
+					picker.show(function(rs) {
+						result.value = rs.text;
+						picker.dispose();
+					});
+				}, false);
+			})(mui);
+			//cityPicker
+			(function($, doc) {
+				$.init();
+				$.ready(function() {
+					var cityPicker3 = new $.PopPicker({
+						layer: 3
+					});
+					cityPicker3.setData(cityData3);
+					var showCityPickerButton = doc.getElementById('showCityPicker3');
+					var cityResult3 = doc.getElementById('showCityPicker3');
+					showCityPickerButton.addEventListener('tap', function(event) {
+						cityPicker3.show(function(items) {
+							cityResult3.value = (items[0] || {}).text + " " + (items[1] || {}).text + " " + (items[2] || {}).text;
+						});
+					}, false);
+				});
+			})(mui, document);
+		</script>
+	</body>
+</html>

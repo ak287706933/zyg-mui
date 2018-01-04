@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<!--<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">-->
+		<script src="js/lib/rem.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/center-info-list.css"/>
+		<title>我的消息列表</title>
+	</head>
+	<body>
+		<div class="info_list_con">
+			<ul class="info_list">
+				<li>
+					<div class="info_view clearfix">
+						<div class="left_text">
+							<p>杀三国三国国国杀三国国杀三国国国杀三国国国杀三国国国杀三国国杀三国杀三国杀</p>
+							<span class="info_date">2017-05-05</span>
+							<a class="view_detail">查看详情</a>
+						</div>
+						<div class="right_btn">
+							<a  class="hide">隐藏提醒</a>
+							<a  class="delet">删除</a>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<script src="js/lib/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			function addTransition(x,obj){
+    			obj.style.transition="transform 500ms ease-out";
+    			obj.style.webkitTransition="-webkit-transform 500ms ease-out";
+				obj.style.webkitTransform="translateX("+x+"rem)";
+				obj.style.transform="translateX("+x+"rem)";
+			}
+			mui(".info_list").on('swipeleft','li',function(){
+				addTransition(-4.266666,$(this).find(".info_view")[0]);
+			});
+			mui(".info_list").on('swiperight','li',function(){
+				addTransition(0,$(this).find(".info_view")[0]);
+			}); 
+		</script>
+	</body>
+</html>

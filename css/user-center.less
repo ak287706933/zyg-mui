@@ -1,0 +1,122 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.clearfix::after,
+.clearfix::before {
+    content: "";
+    line-height: 0;
+    height: 0;
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+a{
+    text-decoration: none;
+}
+li{
+    list-style: none;
+}
+p{
+    margin: 0;
+}
+.head_con{
+    height: 4.266666rem;
+    width: 100%;
+    background: #fff;
+    overflow: hidden;
+    position: relative;
+    img{
+        display: block;
+        width: 2rem;
+        height: 2rem;
+        margin: 0 auto;
+        margin-top: 0.8rem;
+        border-radius: 50%;
+    }
+    .user_name{
+        margin-top: 0.266666rem;
+        font-size: 16px;
+        text-align: center;
+        color: #333;
+    }
+    .modify{
+        position: absolute;
+        font-size: 16px;
+        color: #27A4DC;
+        padding: 0 0.4rem;
+        right: 0;
+        bottom: 0.4rem;
+    }
+}
+.user_option{
+    display: block;
+    margin-top: 2px;
+    li{
+        width: 100%;
+        height: 1.466666rem;
+        line-height: 1.466666rem;
+        padding-left: 1.466666rem;
+        position: relative;
+        margin-bottom: 2px;
+        background: #fff;
+        i{
+            position: absolute;
+            width: 0.64rem;
+            height: 0.64rem;
+            left: 0.4rem;
+            top: 0.413333rem;
+            background-size: cover;
+        }
+        i.order{
+            background: url(../img/order.png) no-repeat;
+            background-size: cover;
+        }
+        i.account{
+            background: url(../img/account.png) no-repeat;
+            background-size: cover;
+        }
+        i.message{
+            background: url(../img/message.png) no-repeat;
+            background-size: cover;
+        }
+        i.help{
+            background: url(../img/help.png) no-repeat;
+            background-size: cover;
+        }
+        i.feedback{
+            background: url(../img/feedback.png) no-repeat;
+            background-size: cover;
+        }
+        i.contact{
+            background: url(../img/contact.png) no-repeat;
+            background-size: cover;
+        }
+        a{
+            font-size: 16px;
+            color: #333;
+            display: block;
+            height: 1.466666rem;
+            line-height: 1.44rem;
+        }
+    }
+    li:nth-last-child(1){
+        margin-bottom: 0;
+    }
+}
+
+.btn_con{
+    margin-top: 0.4rem;
+    padding: 0 0.4rem;
+    a{
+        display: block;
+        background: #27A4DC;
+        color: #fff;
+        font-size: 16px;
+        height: 1.066666rem;
+        line-height: 1.04rem;
+        text-align: center;
+        border-radius: 0.133333rem;
+    }
+}

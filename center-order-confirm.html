@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<script src="js/lib/rem.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/mui.picker.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/center-order-comment.css"/>
+		<title>我的预约-挂号确认</title>
+	</head>
+	<body>
+		<div class="icon_tit"><i></i>挂号登记</div>
+		<div class="comment_con">
+			<ul class="order_info">
+				<li class="clearfix">
+					<p>中医馆名称</p>
+					<input type="text" disabled="disabled" value="201705260008" />
+				</li>
+				<li class="clearfix">
+					<p>挂号日期</p>
+					<input type="text" disabled="disabled" value="201705260008" />
+				</li>
+				<li class="clearfix">
+					<p>挂号科室</p>
+					<input type="text" disabled="disabled" value="201705260008" />
+				</li>
+				<li class="clearfix">
+					<p>医生姓名</p>
+					<input type="text" disabled="disabled" value="张三" class="sub_left"/>
+					<input type="text" disabled="disabled" value="男" class="sub_right"/>
+				</li>
+				<li class="clearfix">
+					<p>挂号类型</p>
+					<input type="text" disabled="disabled" value="201705260008" />
+				</li>
+				<li class="clearfix">
+					<p>挂号费</p>
+					<input type="text" disabled="disabled" value="201705260008" />
+				</li>
+				<li class="clearfix">
+					<p>医生专长</p>
+					<textarea  disabled="disabled">术业有专攻</textarea>
+				</li>
+				<li class="clearfix">
+					<p>就诊人</p>
+					<div class="select_div left_select">
+						<input type="text" readonly="readonly" value="张三" />
+						<i></i>
+						<ul>
+							<li>张三</li>
+							<li>李四</li>
+							<li>王五</li>
+						</ul>
+					</div>
+					<div class="select_div right_select">
+						<input type="text" readonly="readonly" value="男" />
+						<i></i>
+						<ul>
+							<li>男</li>
+							<li>女</li>
+						</ul>
+					</div>
+				</li>
+				<li class="clearfix">
+					<p>会员卡</p>
+					<input type="number"  value="201705260008" />
+				</li>
+				<li class="clearfix">
+					<p>出生日期</p>
+					<input type="text"  value="点击选择日期" readonly="readonly" class="date-picker" data-options='{"type":"date","beginYear":1924,"endYear":2022}' />
+				</li>
+				<li class="clearfix">
+					<p>联系电话</p>
+					<input type="number"  value="201705260008" />
+				</li>
+			</ul>
+			<div class="btn_con">
+				<a href="javascript:;">确认</a>
+			</div>
+		</div>
+		<script src="js/lib/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/mui.picker.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui(".comment_con").on('tap','.select_div',function(e){
+				$(this).find("ul").toggleClass("ul_show");
+				if(e.target.tagName=="LI"){
+					$(this).find("input").val(e.target.innerHTML);
+				}
+			}); 
+			(function($) {
+				$.init();
+				var btn = $('.date-picker')[0];
+				var result = $('.date-picker')[0];
+				btn.addEventListener('tap', function() {
+					var optionsJson = this.getAttribute('data-options') || '{}';
+					var options = JSON.parse(optionsJson);
+					var id = this.getAttribute('id');
+					var picker = new $.DtPicker(options);
+					picker.show(function(rs) {
+						result.value = rs.text;
+						picker.dispose();
+					});
+				}, false);
+			})(mui);
+		</script>
+	</body>
+</html>
