@@ -147,6 +147,7 @@ i {
   width: 100%;
   display: block;
   text-align: center;
+  height: 50%;
 }
 .reg_table dl dd i.sell_out {
   display: block;
@@ -165,6 +166,10 @@ i {
 .reg_table dl dd a span {
   background: #27A4DC;
   color: #fff;
+  height: 50%;
+}
+.reg_table dl.afternoon dd i.sell_out {
+  border-bottom: none;
 }
 .reg_table dl:nth-last-child(1) {
   border-bottom: none;

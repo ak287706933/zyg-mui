@@ -112,6 +112,7 @@
 			        type : "get",
 			        dataType : "json",
 			        success : function(data) {
+			        	console.log(data)
 						var fragment = document.createDocumentFragment();
 						var li;
 						for (var i = 0; i < data.list.length; i++) {

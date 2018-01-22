@@ -57,23 +57,30 @@
 				</li>
 				<li class="clearfix">
 					<p>其他</p>
-					<textarea></textarea>
+					<textarea id="commentArea"></textarea>
 				</li>
 			</ul>
 			<div class="btn_con">
-				<a href="javascript:;">确认</a>
+				<a href="javascript:;" id="commentConfirm">确认</a>
 			</div>
 		</div>
 		<script src="js/lib/mui.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/lib/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			mui(".comment_con").on('tap','.select_div',function(e){
+			mui(".order_info").on('tap','.select_div',function(e){
 				$(this).find("ul").toggleClass("ul_show");
-			//	$(this).find("ul").width($(this).find("ul").width()+2);
 				if(e.target.tagName=="LI"){
 					$(this).find("input").val(e.target.innerHTML);
 				}
 			}); 
+			//下拉框取值
+			var paramArr = [];
+			$("#commentConfirm").click(function(){
+				$(".select_div").each(function(index,ele){
+					paramArr.push($(ele).find("input").val());
+				});
+				paramArr.push($("#commentArea").val());
+			});
 		</script>
 	</body>
 </html>

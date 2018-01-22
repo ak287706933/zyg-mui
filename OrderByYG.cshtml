@@ -1,0 +1,352 @@
+﻿@{
+    ViewBag.Title = "OrderByYG";
+}
+@using Hydee.H2Web.Contract;
+@model Dictionary<string, object>
+
+@{var Dusermodel = (List<s_user_base>) Model["Dusermodel"];}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <script src="~/Content/script/rem.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="~/Content/Styles/mui.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Styles/index-tab-yg.css" />
+    <title>主界面-按医馆</title>
+</head>
+<body>
+    <li class="tab_ul_yg clearfix">
+      @if (@Dusermodel.Count > 0)
+      {
+        <img src="@Dusermodel[0].Url_picture" />
+        <div class="yg_text">
+      
+            <p>@Dusermodel[0].orgname</p>
+            <p class="addr_p"><i></i>@Dusermodel[0].url_map</p>
+       
+        </div>
+      }
+    </li>
+    <div class="order_table_con">
+        <div class="mui-content mui-scroll-wrapper refresh-container">
+            <div class="mui-scroll">
+                <ul class="reg_card_ul">
+                    @if (@Dusermodel.Count >0)
+                    {
+                        for (int i = 0; i < @Dusermodel.Count;i++ )
+                        { 
+                        <div class="tic_card">
+                            <label class="tab_ul_ys clearfix">
+                                <img src="@Dusermodel[i].Url_picture2" />
+                                <div class="ys_text">
+                                    <p>@Dusermodel[i].USERNAME<span>@Dusermodel[i].gender</span></p>
+                                    <p>@Dusermodel[i].dddwlistdisplay</p>
+                                </div>
+                                <div class="ys_price">
+                                    <p>@Dusermodel[i].register_name</p>
+                                    <p>¥ @Dusermodel[i].REGISTER_AMT</p>
+                                </div>
+                            </label>
+                            <p class="reg_tit clearfix">
+                                预约挂号
+                                <i></i>
+                                @*@if (@Dusermodel.ishave == "1")
+                                {
+                                    <span><b class="gray"></b>无号</span>
+                                    <span><b class="blue"></b>有号</span>
+                                }
+                                else
+                                {
+                                    <span><b class="blue"></b>无号</span>
+                                    <span><b class="gray"></b>有号</span>
+                                }*@
+
+                            </p>
+
+                            <div class="reg_table">
+                                <div class="table_list">
+                                    <dl class="date_line clearfix">
+                                        <dt>排班表</dt>
+                                        <dd><span>周一</span><span>05-22</span></dd>
+                                        <dd><span>周一</span><span>05-22</span></dd>
+                                        <dd><span>周一</span><span>05-22</span></dd>
+                                        <dd><span>周一</span><span>05-22</span></dd>
+                                        <dd><span>周一</span><span>05-22</span></dd>
+                                        <dd><span>周一</span><span>05-22</span></dd>
+                                        <dd><span>周一</span><span>05-22</span></dd>
+                                    </dl>
+
+                                    <dl class="morning clearfix">
+                                        <dt>上午</dt>
+                                        @for (int s = 1; s < @Dusermodel[i].AMUNREGCOUNT.Split(',').Length; s++)
+                                        {
+                                            if (int.Parse(@Dusermodel[i].AMUNREGCOUNT.Split(',')[s]) >= 0)
+                                            {
+                                                if (@Dusermodel[i].AMUNREGCOUNT.Split(',')[s] == "1")
+                                                {
+                                                    <dd><a href="#"><span>剩余</span><span>@Dusermodel[i].AMUNREGCOUNT.Split(',')[s]</span></a></dd>
+                                                }
+                                                else
+                                                {
+                                                    <dd><i class="sell_out">已满</i></dd>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <dd></dd>
+                                            }
+
+                                        }
+                                    </dl>
+                                    <dl class="afternoon clearfix">
+                                        <dt>下午</dt>
+                                        @for (int x = 1; x < @Dusermodel[i].PMUNREGCOUNT.Split(',').Length; x++)
+                                        {
+                                            if ( int.Parse(@Dusermodel[i].PMUNREGCOUNT.Split(',')[x]) >=0)
+                                            {
+                                                if (@Dusermodel[i].PMUNREGCOUNT.Split(',')[x] == "1")
+                                                {
+                                                    <dd><a href="#"><span>剩余</span><span>@Dusermodel[i].PMUNREGCOUNT.Split(',')[x]</span></a></dd>
+                                                }
+                                                else
+                                                {
+                                                    <dd><i class="sell_out">已满</i></dd>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <dd></dd>
+                                            }
+                                        }
+
+                                    </dl>
+
+
+                                </div>
+                            </div>
+                        </div>
+    <input type="hidden" id="userid" value="@Dusermodel[i].USERID" />
+    <input type="hidden" id="department" value="@Dusermodel[i].Dddwlistdata" />
+    <input type="hidden" id="register_type" value="@Dusermodel[i].REGISTER_TYPE" />
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/script/mui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="~/Content/script/mui.pullToRefresh.js" type="text/javascript" charset="utf-8"></script>
+    <script src="~/Content/script/mui.pullToRefresh.material.js" type="text/javascript" charset="utf-8"></script>
+    <script src="~/Content/script/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+
+        var nowPage = 1;
+        var allPage;
+        //日期格式化
+        function funDate(aa) {
+            var date1 = new Date(),
+            time1 = date1.getFullYear() + "-" + (date1.getMonth() + 1) + "-" + date1.getDate();
+            var date2 = new Date(date1);
+            date2.setDate(date1.getDate() + aa);
+            var time2 = date2.getFullYear() + "-" + (date2.getMonth() + 1) + "-" + date2.getDate();
+            var myMonth = (date2.getMonth() + 1);
+            var myDate = date2.getDate();
+            var myWeek = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'][date2.getDay()];
+            if (myMonth < 10) {
+                myMonth = "0" + myMonth;
+            }
+            if (myDate < 10) {
+                myDate = "0" + myDate;
+            }
+            var endFormatTime = myMonth + "-" + myDate;
+            var funDate = {
+                "orderDate": endFormatTime,
+                "orderWeek": myWeek
+            };
+            return funDate;
+        }
+        //设置日期
+        function setTableDate() {
+            $(".table_list").find(".date_line").each(function (index, ele) {
+                $(ele).find("dd").each(function (index, ele) {
+                    $(ele).find("span").eq(0).html(funDate(index + 1).orderWeek);
+                    $(ele).find("span").eq(1).html(funDate(index + 1).orderDate);
+                });
+            });
+        }
+        function setTableClass() {
+            $(".table_list").find(".date_line").each(function (index, ele) {
+                $(ele).find("dd").each(function (index, ele) {
+                    $(ele).find("span").eq(0).html(funDate(index + 1).orderWeek);
+                    $(ele).find("span").eq(1).html(funDate(index + 1).orderDate);
+                });
+            });
+        }
+
+        function checkStr(num) {
+            var num = parseInt(num);
+            var str = "";
+            if (num === -1) {
+                str += '';
+            }
+            else if (num === 0) {
+                str += '<i class="sell_out">已满</i>';
+            }
+            else if (num > 0) {
+                str += '<a href="#"><span>剩余</span><span>' + num + '</span></a>';
+            }
+            return str;
+        }
+        function pullDown(nowPage) {
+            $.ajax({
+                url: 'OrderByYGDetail',
+                type: "post",
+                data: {BUSNO:"", page: nowPage },
+                dataType: "json",
+                success: function (res) {
+                    allPage = res.allPage;
+                    $(".reg_card_ul").empty();
+                    var data = res.list;
+                    var fragment = document.createDocumentFragment();
+                    var str;
+                    //console.log(data);
+                    for (var i = 0; i < data.length; i++) {
+                        var amArr = data[i].momning;
+                        var pmArr = data[i].afternoon;
+                        var amStr1 = checkStr(data[i].momning[0]);
+                        var amStr2 = checkStr(data[i].momning[1]);
+                        var amStr3 = checkStr(data[i].momning[2]);
+                        var amStr4 = checkStr(data[i].momning[3]);
+                        var amStr5 = checkStr(data[i].momning[4]);
+                        var amStr6 = checkStr(data[i].momning[5]);
+                        var amStr7 = checkStr(data[i].momning[6]);
+
+                        var pmStr1 = checkStr(data[i].afternoon[0]);
+                        var pmStr2 = checkStr(data[i].afternoon[1]);
+                        var pmStr3 = checkStr(data[i].afternoon[2]);
+                        var pmStr4 = checkStr(data[i].afternoon[3]);
+                        var pmStr5 = checkStr(data[i].afternoon[4]);
+                        var pmStr6 = checkStr(data[i].afternoon[5]);
+                        var pmStr7 = checkStr(data[i].afternoon[6]);
+
+                        str = document.createElement('div');
+                        str.className = "tic_card"
+                        str.innerHTML = '<label class="tab_ul_ys clearfix">' +
+                            '<img src="img/yisheng.png"/>' +
+                            '<div class="ys_text">' +
+                                '<p>' + data[i].USERNAME + '<span>' + data[i].gender + '</span></p>' +
+                                '<p>' + data[i].dddwlistdisplay + '</p>' +
+                            '</div>' +
+                            '<div class="ys_price">' +
+                                '<p>' + data[i].register_name + '</p>' +
+                                '<p>¥ ' + data[i].REGISTER_AMT + '</p>' +
+                            '</div>' +
+                        '</label>' +
+                        '<p class="reg_tit clearfix">' +
+                            '预约挂号' +
+                            '<i></i>' +
+                            '<span><b class="gray"></b>无号</span>' +
+                            '<span><b class="blue"></b>有号</span>' +
+                        '</p>' +
+                        '<div class="reg_table">' +
+                            '<div class="table_list">' +
+                                '<dl class="date_line clearfix">' +
+                                    '<dt>排班表</dt>' +
+                                    '<dd><span></span><span></span></dd>' +
+                                    '<dd><span></span><span></span></dd>' +
+                                    '<dd><span></span><span></span></dd>' +
+                                    '<dd><span></span><span></span></dd>' +
+                                    '<dd><span></span><span></span></dd>' +
+                                    '<dd><span></span><span></span></dd>' +
+                                    '<dd><span></span><span></span></dd>' +
+                                '</dl>' +
+                                '<dl class="morning clearfix">' +
+                                    '<dt>上午</dt>' +
+                                    '<dd>' + amStr1 + '</dd>' +
+                                    '<dd>' + amStr2 + '</dd>' +
+                                    '<dd>' + amStr3 + '</dd>' +
+                                    '<dd>' + amStr4 + '</dd>' +
+                                    '<dd>' + amStr5 + '</dd>' +
+                                    '<dd>' + amStr6 + '</dd>' +
+                                    '<dd>' + amStr7 + '</dd>' +
+                                '</dl>' +
+                                '<dl class="afternoon clearfix">' +
+                                    '<dt>下午</dt>' +
+                                    '<dd>' + pmStr1 + '</dd>' +
+                                    '<dd>' + pmStr2 + '</dd>' +
+                                    '<dd>' + pmStr3 + '</dd>' +
+                                    '<dd>' + pmStr4 + '</dd>' +
+                                    '<dd>' + pmStr5 + '</dd>' +
+                                    '<dd>' + pmStr6 + '</dd>' +
+                                    '<dd>' + pmStr7 + '</dd>' +
+                                '</dl>' +
+                            '</div>' +
+                        '</div>' +
+                        '<input type="hidden"  id="userid" value=' + data[i].USERID + ' />' +
+                        '<input type="hidden"  id="department" value=' + data[i].DEPARTMENT + ' />' +
+                        '<input type="hidden"  id="register_type" value=' + data[i].REGISTER_TYPE + ' />';
+                        fragment.appendChild(str);
+                    }
+                    var ul = document.querySelector('.reg_card_ul');
+                    ul.appendChild(fragment);
+                    setTableDate();
+                }
+            });
+        }
+        //加载执行
+        $(function () {
+            var winHeight = window.innerHeight;
+            $(".order_table_con").height(winHeight - 5 - $('.tab_ul_yg').outerHeight());
+            setTableDate();
+        });
+        //改变分辨率执行
+        window.addEventListener('resize', function (event) {
+            var winHeight = window.innerHeight;
+            $(".order_table_con").height(winHeight - 5 - $('.tab_ul_yg').outerHeight());
+        });
+        (function ($) {
+            $('.mui-scroll-wrapper').scroll({
+                indicators: false //是否显示滚动条
+            });
+            var deceleration = mui.os.ios ? 0.003 : 0.0009;
+            $('.mui-scroll-wrapper').scroll({
+                bounce: false,
+                indicators: true, //是否显示滚动条
+                deceleration: deceleration
+            });
+            function setTableDate() {
+                jQuery(".table_list").find(".date_line").each(function (index, ele) {
+                    jQuery(ele).find("dd").each(function (index, ele) {
+                        jQuery(ele).find("span").eq(0).html(funDate(index + 1).orderWeek);
+                        jQuery(ele).find("span").eq(1).html(funDate(index + 1).orderDate);
+                    });
+                });
+            }
+            $.ready(function () {
+                //循环初始化所有下拉刷新，上拉加载。
+                $.each(document.querySelectorAll('.refresh-container .mui-scroll'), function (index, pullRefreshEl) {
+                    $(pullRefreshEl).pullToRefresh({
+                        up: {
+                            callback: function () {
+                                var self = this;
+                                setTimeout(function () {
+                                    nowPage++;
+                                    console.log(nowPage);
+                                    pullDown(nowPage);
+                                    if (nowPage = allPage) {
+                                        self.endPullUpToRefresh(true);
+                                    } else {
+                                        self.endPullUpToRefresh();
+                                    }
+                                }, 1000);
+                            }
+                        }
+                    });
+                });
+            });
+        })(mui);
+    </script>
+</body>
+</html>
+
+

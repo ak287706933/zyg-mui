@@ -6,7 +6,7 @@
 		<script src="js/lib/rem.js" type="text/javascript" charset="utf-8"></script>
 		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
 		<link rel="stylesheet" type="text/css" href="css/index-tab-yg.css"/>
-		<title>主界面-按医馆</title>
+		<title>主界面-按医馆-copy</title>
 	</head>
 	<body>
 		<li class="tab_ul_yg clearfix">
@@ -72,9 +72,6 @@
 									</dl>
 								</div>
 							</div>
-							<input type="hidden"  class="userid" value="168" />
-							<input type="hidden"  class="department" value="001" />
-							<input type="hidden"  class="register_type" value="010" />
 						</div>
 						<div class="tic_card">
 							<label class="tab_ul_ys clearfix">
@@ -128,9 +125,6 @@
 									</dl>
 								</div>
 							</div>
-							<input type="hidden"  class="userid" value="168" />
-							<input type="hidden"  class="department" value="001" />
-							<input type="hidden"  class="register_type" value="010" />
 						</div>
 					</ul>
 				</div>
@@ -153,7 +147,6 @@
 		        var time2 = date2.getFullYear()+"-"+(date2.getMonth()+1)+"-"+date2.getDate();
 		        var myMonth = (date2.getMonth()+1);
 		        var myDate = date2.getDate();
-		        var myYear = date2.getFullYear();
 		      	var myWeek =  ['周日','周一','周二','周三','周四','周五','周六'][date2.getDay()];
 		        if(myMonth<10){
 		        	myMonth = "0"+myMonth;
@@ -164,8 +157,7 @@
 		        var endFormatTime = myMonth+"-"+myDate;
 		        var funDate = {
 		        	"orderDate":endFormatTime,
-		        	"orderWeek":myWeek,
-		        	"orderYear":myYear+"-"+myMonth+"-"+myDate
+		        	"orderWeek":myWeek
 		        };
 		        return funDate;
 		    }
@@ -173,43 +165,30 @@
 			function setTableDate(){
 				$(".table_list").find(".date_line").each(function(index,ele){
 					$(ele).find("dd").each(function(index,ele){
-						$(ele).find("span").eq(0).html(funDate(index).orderWeek);
-						$(ele).find("span").eq(1).html(funDate(index).orderDate);
+						$(ele).find("span").eq(0).html(funDate(index+1).orderWeek);
+						$(ele).find("span").eq(1).html(funDate(index+1).orderDate);
 					});
 				});
 			}
-			function setTableAttr(){
-				$(".table_list").find(".morning").each(function(index,ele){
+			function setTableClass(){
+				$(".table_list").find(".date_line").each(function(index,ele){
 					$(ele).find("dd").each(function(index,ele){
-						if($(ele).find("a").length>0){
-							$(ele).find("a").attr("order-date",funDate(index).orderYear);
-						}
-					});
-				});
-				$(".table_list").find(".afternoon").each(function(index,ele){
-					$(ele).find("dd").each(function(index,ele){
-						if($(ele).find("a").length>0){
-							$(ele).find("a").attr("order-date",funDate(index).orderYear);
-						}
+						$(ele).find("span").eq(0).html(funDate(index+1).orderWeek);
+						$(ele).find("span").eq(1).html(funDate(index+1).orderDate);
 					});
 				});
 			}
 			//
 			Mock.mock('mock.json', {    
-			  'list|1-2': [{      
-					"BUSNO": "2002",
-					"ORGNAME": "广西某某连锁有限公司万达2店",
-					"USERID": "168",
-					"USERNAME": "管理员",
-					"Url_picture": "",
-					"DEPARTMENT": "001",
-					"dddwlistdisplay": "儿科",
-					"REGISTER_TYPE": "010",
-					"register_name": "特需号",
-					"gender": "男",
-					"REGISTER_AMT": "11",
-					"momning": [1, 0, 5, 0, 8, 0, 0],
-					"afternoon": [1, 0, 6, 0, 7, 0, 0]
+			  'list|1-3': [{      
+			         'name': '@cname',
+			         'sex':'男',
+			         'dep': "骨科",
+			         'price|100-200':100,
+			         'Url_picture':"img/addr.png",
+			         "register_name":"专家号",
+			         'momning':[0,-1,2,5,0,9,55],
+			         'afternoon':[0,0,2,-1,0,9,23],
 			     }],
 			     'allPage':3,
 			});
@@ -227,17 +206,16 @@
 				}
 				return str;
 			}
-			function pullDown(nowPage){
+			function pullDown(){
 		    	$.ajax({
 			        url : 'mock.json',
-			        type : "post",
-			        data:{page:nowPage},
+			        type : "get",
+			        //data: '{"pageNum": "nowPage", "age": 18}',
 			        dataType : "json",
 			        success : function(res) {
-			        	nowPage++;
-			        	allPage = res.allPage;
-			        	console.log(res.allPage);
 			        	var data = res.list;
+			        	allPage = res.allPage;
+			        	console.log(allPage);
 						var fragment = document.createDocumentFragment();
 						var str;
 						//console.log(data);
@@ -265,12 +243,12 @@
 							str.innerHTML =	'<label class="tab_ul_ys clearfix">'+
 								'<img src='+data[i].Url_picture+'/>'+
 								'<div class="ys_text">'+
-									'<p>'+data[i].USERNAME+'<span>'+data[i].gender+'</span></p>'+
-									'<p>'+data[i].dddwlistdisplay+'</p>'+
+									'<p>'+data[i].name+'<span>'+data[i].sex+'</span></p>'+
+									'<p>'+data[i].dep+'</p>'+
 								'</div>'+
 								'<div class="ys_price">'+
 									'<p>'+data[i].register_name+'</p>'+
-									'<p>¥ '+data[i].REGISTER_AMT+'</p>'+
+									'<p>¥ '+data[i].price+'</p>'+
 								'</div>'+
 							'</label>'+
 							'<p class="reg_tit clearfix">'+
@@ -312,32 +290,12 @@
 										'<dd>'+pmStr7+'</dd>'+
 									'</dl>'+
 								'</div>'+
-							'</div>'+
-							'<input type="hidden"  class="userid" value='+data[i].USERID+' />'+
-							'<input type="hidden"  class="department" value='+data[i].DEPARTMENT+' />'+
-							'<input type="hidden"  class="register_type" value='+data[i].REGISTER_TYPE+' />';
+							'</div>';
 							fragment.appendChild(str);
 						}
 						var ul = document.querySelector('.reg_card_ul');
 						ul.appendChild(fragment);
 						setTableDate();
-						setTableAttr();
-						mui(".tic_card").off("tap",'a');
-						mui(".tic_card").on('tap','a',function(){
-						  var domainEle = $(this).parent().parent().parent().parent().parent();
-					  	  var order_date = this.getAttribute("order-date");
-						  var USERID = domainEle.find(".userid").val();
-						  var USERNAME =  domainEle.find(".ys_text").find("p:eq(0)").text();
-						  USERNAME = USERNAME.substring(0,USERNAME.length-1);
-						  var Dddwlistdata = domainEle.find(".department").val();
-						  var dddwlistdisplay = domainEle.find(".ys_text").find("p:eq(1)").text();
-						  var REGISTER_TYPE = domainEle.find(".register_type").val();
-						  var register_name = domainEle.find(".ys_price").find("p:eq(0)").text();
-						  var REGISTER_AMT = domainEle.find(".ys_price").find("p:eq(1)").text();
-						  REGISTER_AMT = REGISTER_AMT.trim().substring(1,REGISTER_AMT.length);
-						  var gender = domainEle.find(".ys_text").find("span").text();
-						  console.log(USERID)
-						}); 
 			        }
 				});
 			}
@@ -346,22 +304,6 @@
 				var winHeight = window.innerHeight;
 				$(".order_table_con").height(winHeight-5-$('.tab_ul_yg').outerHeight());
 				setTableDate();
-				setTableAttr();
-				mui(".tic_card").on('tap','a',function(){
-				  var domainEle = $(this).parent().parent().parent().parent().parent();
-			  	  var order_date = this.getAttribute("order-date");
-				  var USERID = domainEle.find(".userid").val();
-				  var USERNAME =  domainEle.find(".ys_text").find("p:eq(0)").text();
-				  USERNAME = USERNAME.substring(0,USERNAME.length-1);
-				  var Dddwlistdata = domainEle.find(".department").val();
-				  var dddwlistdisplay = domainEle.find(".ys_text").find("p:eq(1)").text();
-				  var REGISTER_TYPE = domainEle.find(".register_type").val();
-				  var register_name = domainEle.find(".ys_price").find("p:eq(0)").text();
-				  var REGISTER_AMT = domainEle.find(".ys_price").find("p:eq(1)").text();
-				  REGISTER_AMT = REGISTER_AMT.trim().substring(1,REGISTER_AMT.length);
-				  var gender = domainEle.find(".ys_text").find("span").text();
-				  console.log(USERID)
-				}); 
 			});
 			//改变分辨率执行
 			window.addEventListener('resize', function(event){
@@ -381,38 +323,22 @@
 				function setTableDate(){
 					jQuery(".table_list").find(".date_line").each(function(index,ele){
 						jQuery(ele).find("dd").each(function(index,ele){
-							jQuery(ele).find("span").eq(0).html(funDate(index).orderWeek);
-							jQuery(ele).find("span").eq(1).html(funDate(index).orderDate);
-						});
-					});
-				}
-				function setTableAttr(){
-					$(".table_list").find(".morning").each(function(index,ele){
-						$(ele).find("dd").each(function(index,ele){
-							if($(ele).find("a").length>0){
-								$(ele).find("a").attr("order-date",funDate(index).orderYear);
-							}
-						});
-					});
-					$(".table_list").find(".afternoon").each(function(index,ele){
-						$(ele).find("dd").each(function(index,ele){
-							if($(ele).find("a").length>0){
-								$(ele).find("a").attr("order-date",funDate(index).orderYear);
-							}
+							jQuery(ele).find("span").eq(0).html(funDate(index+1).orderWeek);
+							jQuery(ele).find("span").eq(1).html(funDate(index+1).orderDate);
 						});
 					});
 				}
 				$.ready(function() {
-					//循环初始化所有下拉刷新，上拉加载。
 					$.each(document.querySelectorAll('.refresh-container .mui-scroll'), function(index, pullRefreshEl) {
 						$(pullRefreshEl).pullToRefresh({
 							up: {
 								callback: function() {
 									var self = this;
-									nowPage++;
 									setTimeout(function() {
-										pullDown(nowPage);
-										if(nowPage>allPage){
+										nowPage++;
+										console.log(nowPage);
+										pullDown();
+										if(nowPage==allPage){
 											self.endPullUpToRefresh(true);
 										}else{
 											self.endPullUpToRefresh();

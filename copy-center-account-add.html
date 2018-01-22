@@ -26,7 +26,11 @@
 				</li>
 				<li class="clearfix">
 					<p>出生日期</p>
-					<input type="text"  value="点击选择日期" readonly="readonly" class="date-picker" />
+					<input type="text"  value="点击选择日期" readonly="readonly" class="date-picker" data-options='{"type":"date","beginYear":1924,"endYear":2022}' />
+				</li>
+				<li class="clearfix">
+					<p>出生日期</p>
+					<input type="text"  value="点击选择日期" readonly="readonly" class="date-picker" data-options='{"type":"date","beginYear":1924,"endYear":2022}' />
 				</li>
 				<li class="clearfix">
 					<p>会员卡号</p>
@@ -34,11 +38,11 @@
 				</li>
 				<li class="clearfix">
 					<p>联系电话</p>
-					<input type="number"  oninput="if(value.length>11)value=value.slice(0,11)" />
+					<input type="number"  value="201705260008" />
 				</li>
 				<li class="clearfix">
 					<p>地址</p>
-					<input type="text" id='showCityPicker3' value="点击选择地址" readonly="readonly" class="date-picker" />
+					<input type="text" id='showCityPicker3' value="点击选择地址" readonly="readonly" />
 				</li>
 			</ul>
 			<div class="btn_con">
@@ -61,19 +65,19 @@
 			//datePicker
 			(function($) {
 				$.init();
-				var btn = $('.date-picker')[0];
-				var result = $('.date-picker')[0];
-				btn.addEventListener('tap', function() {
-					var year=new Date().getFullYear(); 
-					var  month=new Date().getMonth()+1; 
-					var day=new Date().getDate();
-					var options = {"type":"date","beginYear":1910,"endYear":year,"endMonth":month,"endDay":day};
-					var picker = new $.DtPicker(options);
-					picker.show(function(rs) {
-						result.value = rs.text;
-						picker.dispose();
-					});
-				}, false);
+				$(".date-picker").each(function(index,ele){
+					var result = $(ele)[0];
+					$(ele)[0].addEventListener('tap', function() {
+						var optionsJson = this.getAttribute('data-options') || '{}';
+						var options = JSON.parse(optionsJson);
+						var id = this.getAttribute('id');
+						var picker = new $.DtPicker(options);
+						picker.show(function(rs) {
+							result.value = rs.text;
+							picker.dispose();
+						});
+					}, false);
+				});
 			})(mui);
 			//cityPicker
 			(function($, doc) {

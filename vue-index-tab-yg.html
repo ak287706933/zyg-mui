@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<script src="js/lib/rem.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="css/mui.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index-tab-yg.css"/>
+		<title>主界面-按医馆</title>
+	</head>
+	<body>
+		<div id="app">
+			<li class="tab_ul_yg clearfix">
+				<img src="img/yiguan.png"/>
+				<div class="yg_text">
+					<p>{{message}}</p>
+					<p class="addr_p"><i></i>地址</p>
+				</div>
+			</li>
+			<div class="order_table_con">
+				<div  class="mui-content mui-scroll-wrapper refresh-container">
+					<div class="mui-scroll">
+						<ul class="reg_card_ul">
+							<div class="tic_card"  v-for="data in vdata">
+								<label class="tab_ul_ys clearfix">
+									<img src="img/yisheng.png"/>
+									<div class="ys_text">
+										<p>{{data.USERNAME}}<span>{{data.gender}}</span></p>
+										<p>{{data.dddwlistdisplay}}</p>
+									</div>
+									<div class="ys_price">
+										<p>{{data.register_name}}</p>
+										<p>¥ {{data.REGISTER_AMT}}</p>
+									</div>
+								</label>
+								<p class="reg_tit clearfix">
+									预约挂号
+									<i></i>
+									<span><b class="gray"></b>无号</span>
+									<span><b class="blue"></b>有号</span>
+								</p>
+								<div class="reg_table">
+									<div class="table_list">
+										<dl class="date_line clearfix">
+											<dt>排班表</dt>
+											<dd><span></span><span></span></dd>
+											<dd><span></span><span></span></dd>
+											<dd><span></span><span></span></dd>
+											<dd><span></span><span></span></dd>
+											<dd><span></span><span></span></dd>
+											<dd><span></span><span></span></dd>
+											<dd><span></span><span></span></dd>
+										</dl>
+										<dl class="morning clearfix">
+											<dt>上午</dt>
+											<dd v-for="item in data.momning">
+												<i class="sell_out" v-if="item === 0">已满</i>
+												<i  v-if="item < 0"></i>
+												<a href="#" v-if="item > 0"><span>剩余</span><span>{{item}}</span></a>
+											</dd>
+										</dl>
+										<dl class="afternoon clearfix">
+											<dt>下午</dt>
+											<dd v-for="item in data.afternoon">
+												<i class="sell_out" v-if="item === 0">已满</i>
+												<i  v-if="item < 0"></i>
+												<a href="#" v-if="item > 0"><span>剩余</span><span>{{item}}</span></a>
+											</dd>
+										</dl>
+									</div>
+								</div>
+								<input type="hidden"  class="userid" v-bind:value="data.USERID" />
+								<input type="hidden"  class="department" v-bind:value="data.DEPARTMENT" />
+								<input type="hidden"  class="register_type" v-bind:value="data.REGISTER_TYPE" />
+							</div>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>	
+		<script src="js/lib/mui.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/mui.pullToRefresh.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/mui.pullToRefresh.material.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/mock.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/lib/vue.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			function funDate(aa){
+		        var date1 = new Date(),
+		        time1=date1.getFullYear()+"-"+(date1.getMonth()+1)+"-"+date1.getDate();
+		        var date2 = new Date(date1);
+		        date2.setDate(date1.getDate()+aa);
+		        var time2 = date2.getFullYear()+"-"+(date2.getMonth()+1)+"-"+date2.getDate();
+		        var myMonth = (date2.getMonth()+1);
+		        var myDate = date2.getDate();
+		        var myYear = date2.getFullYear();
+		      	var myWeek =  ['周日','周一','周二','周三','周四','周五','周六'][date2.getDay()];
+		        if(myMonth<10){
+		        	myMonth = "0"+myMonth;
+		        }
+		        if(myDate<10){
+		        	myDate = "0"+myDate;
+		        }
+		        var endFormatTime = myMonth+"-"+myDate;
+		        var funDate = {
+		        	"orderDate":endFormatTime,
+		        	"orderWeek":myWeek,
+		        	"orderYear":myYear+"-"+myMonth+"-"+myDate
+		        };
+		        return funDate;
+		    }
+		Mock.mock('mock.json', {    
+			  'list|3-5': [{      
+					"BUSNO": "2002",
+					"ORGNAME": "广西某某连锁有限公司万达2店",
+					"USERID": "168",
+					"USERNAME": "管理员",
+					"Url_picture": "",
+					"DEPARTMENT": "001",
+					"dddwlistdisplay": "儿科",
+					"REGISTER_TYPE": "010",
+					"register_name": "特需号",
+					"gender": "男",
+					"REGISTER_AMT": "11",
+					"momning": [1, -1, 5, 0, 8, 0, 0],
+					"afternoon": [1, -1, 6, 0, 7, 0, 22]
+			     }],
+			     'allPage':3,
+			});
+		//vue
+		var vum=new Vue({
+		  el: "#app",
+		  data: {
+		  	message:"",
+		    vdata: "",
+		  },
+		  mounted:function(){
+			var deceleration = mui.os.ios?0.003:0.0009;
+			mui('.mui-scroll-wrapper').scroll({
+				bounce: false,
+				indicators: true, //是否显示滚动条
+				deceleration:deceleration
+			});
+		  },
+		  created:function(){
+			var winHeight = window.innerHeight;
+				$(".order_table_con").height(winHeight-5-$('.tab_ul_yg').outerHeight());
+		      jQuery.ajax({
+		        type: 'get',
+		        dataType : "json",
+		        url: "mock.json",
+		        success: function (res) {
+		        	var data = res.list;
+			        vum.vdata = data;
+			        vum.message = res.allPage;
+		        }
+	      	})
+			$(".table_list").find(".date_line").each(function(index,ele){
+				$(ele).find("dd").each(function(index,ele){
+					$(ele).find("span").eq(0).html(funDate(index).orderWeek);
+					$(ele).find("span").eq(1).html(funDate(index).orderDate);
+				});
+			});
+		  }
+		})
+		</script>
+	</body>
+</html>

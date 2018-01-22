@@ -45,16 +45,17 @@
 				<li class="clearfix">
 					<p>就诊人</p>
 					<div class="select_div left_select">
-						<input type="text" readonly="readonly" value="张三" />
+						<input type="text" readonly="readonly" value="张三" id="linkageIpt" />
+						<input type="hidden" readonly="readonly" value="张三" id="PATIENT_ID" />
 						<i></i>
-						<ul>
-							<li>张三</li>
-							<li>李四</li>
-							<li>王五</li>
+						<ul id="linkage">
+							<li value="00000301">张三</li>
+							<li value="00000302">李四</li>
+							<li value="00000303">王五</li>
 						</ul>
 					</div>
 					<div class="select_div right_select">
-						<input type="text" readonly="readonly" value="男" />
+						<input type="text" readonly="readonly" value="男" id="genderIpt" />
 						<i></i>
 						<ul>
 							<li>男</li>
@@ -64,15 +65,15 @@
 				</li>
 				<li class="clearfix">
 					<p>会员卡</p>
-					<input type="number"  value="201705260008" />
+					<input type="number"  id="cardIpt" value="201705260008" />
 				</li>
 				<li class="clearfix">
 					<p>出生日期</p>
-					<input type="text"  value="点击选择日期" readonly="readonly" class="date-picker" data-options='{"type":"date","beginYear":1924,"endYear":2022}' />
+					<input type="text" id="dataIpt" value="点击选择日期" readonly="readonly" class="date-picker" data-options='{"type":"date","beginYear":1924,"endYear":2022}' />
 				</li>
 				<li class="clearfix">
 					<p>联系电话</p>
-					<input type="number"  value="201705260008" />
+					<input type="number"  id="numberIpt" value="201705260008" />
 				</li>
 			</ul>
 			<div class="btn_con">
@@ -83,10 +84,30 @@
 		<script src="js/lib/mui.picker.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/lib/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
+			function linkData(pathId){
+		    	$.ajax({
+			        url : 'test2.json',
+			        type : "post",
+			        data:{"PATIENT_ID":pathId},
+			        dataType : "json",
+			        success : function(data) {
+			        	$("#genderIpt").val(data.SEX==0?"男":"女");
+			        	$("#cardIpt").val(data.MEMCARDNO);
+			        	$("#dataIpt").val(data.BIRTHDAY.substr(0,data.BIRTHDAY.indexOf("T")));
+			        	$("#numberIpt").val(data.MOBILE);
+			        	$("#PATIENT_ID").val(data.PATIENT_ID);
+			        }
+				});
+			}
 			mui(".comment_con").on('tap','.select_div',function(e){
 				$(this).find("ul").toggleClass("ul_show");
-				if(e.target.tagName=="LI"){
-					$(this).find("input").val(e.target.innerHTML);
+				if(e.target.tagName=="LI"&&$(this).find("#linkageIpt").length>0){
+					//console.log($(e.target).attr("value"))
+					linkData($(e.target).attr("value"));
+					$("#linkageIpt").val($(e.target).text());
+				}
+				if(e.target.tagName=="LI"&&$(this).find("#linkageIpt").length==0){
+					$(e.target).parent().siblings("input").val($(e.target).text());
 				}
 			}); 
 			(function($) {
